@@ -5,9 +5,10 @@ name = "pypi"
 
 [packages]
 django = "*"
-mysqlclient = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
+mysql-connector-python = "*"
+pandas = "*"
 
 [dev-packages]
 
