@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'movie'
+    'movie',
+    'data_converter_app'
 ]
 
 MIDDLEWARE = [
