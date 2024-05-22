@@ -5,10 +5,10 @@ from django.db import models
 
 class StreamingContent(models.Model):
     type = models.CharField(max_length=50)
-    title = models.CharField(max_length=100)
-    director = models.CharField(max_length=50)
+    title = models.CharField(max_length=200)
+    director = models.CharField(max_length=250)
     cast = models.JSONField(default=list, blank=True)
-    country = models.CharField(max_length=100, blank=True)
+    country = models.CharField(max_length=200, blank=True)
     date_added = models.CharField(max_length=50)
     release_year = models.IntegerField()
     rating = models.CharField(max_length=10)
