@@ -18,6 +18,8 @@ def streamingcontent_details(request):
             data_df = pandas.read_csv(request.FILES['netflix_data'])
             data_df['cast'] = data_df['cast'].apply(convert_to_list)
             data_df['listed_in'] = data_df['listed_in'].apply(convert_to_list)
+            replaceNAN(data_df, 'director')
+            replaceNAN(data_df, 'country')
             data_list = data_df.to_dict(orient='records')
             serializer = StreamingContentSerializer(data=data_list, many=True)
             if serializer.is_valid(raise_exception=True):
@@ -30,3 +32,6 @@ def convert_to_list(value):
     if pandas.isnull(value): 
         return []
     return value.split(',')
+
+def replaceNAN(fileName, key):
+    fileName[key] = fileName[key].replace("nan", pandas.NA).fillna('')
