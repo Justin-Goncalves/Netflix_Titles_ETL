@@ -15,8 +15,11 @@ def StreamingContent_details(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'POST':
         if request.FILES:
-            file = pandas.read_csv(request.FILES['data']).to_dict(orient="records")
-            serializer = StreamingContentSerializer(data=file, many=True)
+            data_df = pandas.read_csv(request.FILES['data'])
+            data_list = data_df.to_dict(orient="records")
+            serializer = StreamingContentSerializer(data={'data': data_list}, many=True)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
                 return Response('Successfully Uploaded')
+        else:
+            return Response('No file uploaded.', status=status.HTTP_400_BAD_REQUEST)
